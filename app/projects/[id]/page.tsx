@@ -1,11 +1,11 @@
-import { projects } from '@/app/page';
+import { projects } from '@/app/data/projects';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { notFound } from 'next/navigation';
 
 export function generateStaticParams() {
-  return projects.map((project) => ({
+  return projects.map((project: { id: string }) => ({
     id: project.id,
   }));
 }
@@ -49,7 +49,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Herramientas & Tecnologías</h2>
                 <div className="flex flex-wrap gap-2">
-                  {project.tools.map((tool, index) => (
+                  {project.tools.map((tool: string, index: number) => (
                     <span
                       key={index}
                       className="px-3 py-1 bg-primary/10 text-primary-foreground rounded-full text-sm"
@@ -61,7 +61,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
                 <h2 className="text-xl font-semibold mb-4 mt-8">Links del proyecto</h2>
                 <div className="space-y-2">
-                  {project.links?.map((link, index) => (
+                  {project.links?.map((link: { title: string; url: string }, index: number) => (
                     <a
                       key={index}
                       href={link.url}
@@ -79,7 +79,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Resultados clave</h2>
                 <ul className="space-y-2">
-                  {project.outcomes.map((outcome, index) => (
+                  {project.outcomes.map((outcome: string, index: number) => (
                     <li key={index} className="flex items-start">
                       <span className="inline-block w-2 h-2 rounded-full bg-primary mt-2 mr-2" />
                       <span className="text-muted-foreground">{outcome}</span>
