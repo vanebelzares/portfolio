@@ -1,91 +1,149 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BarChart2, Database, LineChart, Mail, MapPin, Phone } from 'lucide-react';
+import { useState } from 'react';
+import emailjs from '@emailjs/browser';
+import toast from 'react-hot-toast';
 
 export const projects = [
   {
-    id: "sales-analytics",
-    title: "Sales Analytics Dashboard",
-    description: "Interactive dashboard analyzing sales trends and patterns",
-    icon: <BarChart2 className="w-10 h-10" />,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=60",
-    fullDescription: "A comprehensive sales analytics dashboard that provides real-time insights into sales performance, customer behavior, and market trends. Built using Python for data processing and Power BI for visualization.",
-    tools: ["Python", "Pandas", "Power BI", "SQL"],
-    outcomes: [
-      "Increased sales efficiency by 25%",
-      "Reduced reporting time by 40%",
-      "Improved forecast accuracy by 30%"
+    "id": "AQI-Analisys",
+    "title": "Análisis del Indice de Calidad del Aire (AQI) en Taiwán",
+    "description": "Identificación de patrones y tendencias en la contaminación ambiental.",
+    "icon": "",
+    "image": "/calidad-del-aire.jpg",
+    "fullDescription": "Análisis de la Calidad del Aire (AQI) utilizando técnicas de análisis de datos para evaluar niveles de contaminación, identificar patrones, y comprender tendencias estacionales y geográficas. El proyecto emplea Python para la manipulación de datos y visualización, proporcionando insights clave para la toma de decisiones en temas medioambientales.",
+    "tools": ["Python", "Pandas", "Matplotlib", "Seaborn"],
+    "outcomes": [
+      "Creación de un modelo de clasificación con un accuracy de 85%",
+      "Implementación de hiperparámetros con un Coeficiente de determinación cercano al 100%"
+  
     ],
-    links: [
+    "links": [
       {
-        title: "GitHub Repository",
-        url: "https://github.com/vanessabelzares/sales-analytics"
+        "title": "Código en Kaggle",
+        "url": "https://www.kaggle.com/code/vanessabel/aqi-analysis-in-taiwan"
       },
       {
-        title: "Live Dashboard",
-        url: "https://powerbi.com/sales-analytics"
-      },
-      {
-        title: "Documentation",
-        url: "https://docs.sales-analytics.com"
+        "title": "Presentación del proyecto",
+        "url": "https://docs.google.com/presentation/d/1IOHOHKWT7KZo5LHRFe7RG5jPg57vlJaE/edit?usp=drive_link&ouid=108140961292375537376&rtpof=true&sd=true"
       }
     ]
   },
   {
-    id: "customer-segmentation",
-    title: "Customer Segmentation",
-    description: "ML-based customer segmentation analysis",
-    icon: <Database className="w-10 h-10" />,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=60",
-    fullDescription: "Advanced customer segmentation analysis using machine learning algorithms to identify distinct customer groups and their behavior patterns. Implemented using Python and scikit-learn.",
-    tools: ["Python", "scikit-learn", "Matplotlib", "Jupyter"],
-    outcomes: [
-      "Identified 5 key customer segments",
-      "Personalized marketing campaigns",
-      "15% increase in customer retention"
-    ],
-    links: [
-      {
-        title: "GitHub Repository",
-        url: "https://github.com/vanessabelzares/customer-segmentation"
-      },
-      {
-        title: "Research Paper",
-        url: "https://research.com/customer-segmentation"
-      }
+      "id": "comercial-flights",
+      "title": "Análisis de incidencias en vuelos comerciales",
+      "description": "Dashboard interactivo de analisis de vuelos comerciales",
+      "icon": "",
+      "image": "/avion-despegando.jpg",
+      "fullDescription": "Un panel integral de análisis de vuelos comerciales que ofrece información sobre el rendimiento de las operaciones, el comportamiento de los pasajeros y las tendencias del mercado. Desarrollado utilizando Python para el procesamiento de datos y Power BI para la visualización.",
+      "tools": ["SQL", "Power BI", "ETL"],
+      "outcomes": [
+        "Insides de aeropuertos con mas cancelaciones",
+        "Relevancia del clima respecto a las incidencias aeroportuarias"
+        
+      ],
+      "links": [
+                  {
+          "title": "Presentación del proyecto",
+          "url": "https://docs.google.com/presentation/d/1zqP-Yopm-xNqEwHphbSaVnT2ln_npz5l/edit?usp=drive_link&ouid=108140961292375537376&rtpof=true&sd=true"
+        },
+        {
+          "title": "Archivo Power BI",
+          "url": "https://drive.google.com/file/d/17V9UfMphhvTf6zcwb_OTzQSW25rwHWC1/view?usp=sharing"
+        }
+      ]
+    },
+    {
+      "id": "e-commerce-sales",
+      "title": "Evaluación de ventas E-commerce Amazon India",
+      "description": "Análisis en ventas para identificar tendencias y optimizar estrategias.",
+      "icon": "",
+      "image": "/ventas.jpg",
+      "fullDescription": "Proyecto de análisis ventas de e-commerce en Amazon India, utilizando Python para procesar y visualizar grandes volúmenes de datos. El enfoque incluye identificar tendencias de compra, patrones de comportamiento de los clientes, productos más vendidos y épocas de alta demanda. Los insights generados buscan optimizar estrategias comerciales, mejorar la experiencia del cliente y aumentar la retención de usuarios.",
+      "tools": ["Python", "Pandas", "Matplotlib", "Seaborn"],
+      "outcomes": [
+        "Importancia de variables significativas para un análisis",
+        "Implementación de diversos modelos de Machine Learning"
+        
+      ],
+      "links": [
+        {
+          "title": "Código en Kaggle",
+          "url": "https://www.kaggle.com/code/vanessabel/e-commerce-sales-analysis-amazon-india"
+        },
+        {
+          "title": "Presentación del proyecto",
+          "url": "https://docs.google.com/presentation/d/14GyPW3FHwNI_fmn6mvw7spEz4cQdgyV5/edit?usp=drive_link&ouid=108140961292375537376&rtpof=true&sd=true"
+        }
+      ]
+    },
+    {
+      "id": "NLP-reviews",
+      "title": "Clasificación de texto y análisis de Makeup Reviews con deep learning y NLP",
+      "description": "Modelo de Deep Learning con NLP para clasificar textos y analizar el sentimiento en reviews.",
+      "icon": "",
+      "image": "/customer-reviews.jpg",
+      "fullDescription": "Análisis de datos utilizando Deep Learning y NLP para clasificar textos y desarrollar un modelo que interprete y analice reviews, extrayendo insights clave y evaluaciones sentimentales.",
+      "tools": ["Python", "Pandas", "neural networks","Deep Learning"],
+      "outcomes": [
+        "Modelado de clasificación de datos con un accuracy de 85%",
+        "Implementación de redes neuronales para la mejora en la presición de la predicción alcanzando un 96% "
+        
+      ],
+      "links": [
+        {
+          "title": "Código en Kaggle",
+          "url": "https://www.kaggle.com/code/vanessabel/nlp-processing-makeup-reviews"
+        },
+        {
+          "title": "Presentación del proyecto",
+          "url": "https://docs.google.com/presentation/d/1MajUfx6iHkTOwQzNh2z_CqDCkJOQe7SI/edit?usp=drive_link&ouid=108140961292375537376&rtpof=true&sd=true"
+        }
+      ]
+    }
     ]
-  },
-  {
-    id: "market-prediction",
-    title: "Market Prediction Model",
-    description: "Predictive analytics for market trends",
-    icon: <LineChart className="w-10 h-10" />,
-    image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=800&auto=format&fit=crop&q=60",
-    fullDescription: "Time series analysis and predictive modeling for market trends using advanced statistical methods and machine learning algorithms. Built with Python and TensorFlow.",
-    tools: ["Python", "TensorFlow", "Statsmodels", "Plotly"],
-    outcomes: [
-      "90% prediction accuracy",
-      "Automated trend detection",
-      "Real-time market insights"
-    ],
-    links: [
-      {
-        title: "GitHub Repository",
-        url: "https://github.com/vanessabelzares/market-prediction"
-      },
-      {
-        title: "Interactive Demo",
-        url: "https://market-prediction.demo.com"
-      },
-      {
-        title: "Technical Report",
-        url: "https://report.market-prediction.com"
-      }
-    ]
-  },
-];
+  
 
 export default function Home() {
+  const [status, setStatus] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    // Get form fields
+    const form = e.currentTarget;
+    const name = form.from_name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+
+    // Validate required fields
+    if (!name || !email || !message) {
+      toast.error('Por favor completa todos los campos requeridos.');
+      return;
+    }
+
+    setStatus('sending');
+    
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_TEMPLATE_ID!,
+        form,
+        process.env.NEXT_PUBLIC_PUBLIC_KEY!
+      );
+      
+      setStatus('success');
+      form.reset();
+      toast.success('¡Mensaje enviado con éxito!');
+    } catch (error) {
+      console.error(error);
+      setStatus('error');
+      toast.error('Error al enviar el mensaje. Por favor, intenta nuevamente.');
+    }
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -116,12 +174,12 @@ export default function Home() {
                 <ArrowRight size={18} />
               </Link>
             </div>
-            <div className="relative aspect-square rounded-full overflow-hidden border-8 border-primary/20">
+            <div className="relative aspect-square rounded-full overflow-hidden ">
               <Image
                 src="/photo.jpg"
                 alt="Vanessa Belzares"
-                fill
-                className="object-cover scale-70"
+               fill
+                className="object-cover   rounded-full border-8 border-primary/20"
                 priority
               />
             </div>
@@ -131,9 +189,9 @@ export default function Home() {
 
       {/* Featured Projects */}
       <section id="projects" className="py-16 px-4 scroll-mt-20">
-        <div className="container mx-auto max-w-6xl">
+        <div className="container mx-auto max-w-8xl">
           <h2 className="text-3xl font-bold text-center mb-12">Proyectos destacados</h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-4 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
@@ -179,15 +237,8 @@ export default function Home() {
                     className="flex items-center space-x-3 text-muted-foreground hover:text-primary-foreground transition-colors"
                   >
                     <Mail className="w-5 h-5" />
-                        <span>vanessa.belzares@example.com</span>
-                  </a>
-                  <a
-                    href="tel:+1234567890"
-                    className="flex items-center space-x-3 text-muted-foreground hover:text-primary-foreground transition-colors"
-                  >
-                    <Phone className="w-5 h-5" />
-                    <span>+1 (234) 567-890</span>
-                  </a>
+                        <span>belzaresv@gmail.com</span>
+                  </a>              
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <MapPin className="w-5 h-5" />
                     <span>Santiago de Chile, Chile</span>
@@ -206,36 +257,42 @@ export default function Home() {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-muted-foreground mb-2">
-                  Nombre
+                <label htmlFor="from_name" className="block text-sm font-medium text-muted-foreground mb-2">
+                  Nombre <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="from_name"
+                  name="from_name"
+                  required
                   className="w-full px-4 py-2 rounded-lg border bg-card hover:bg-accent/50 focus:bg-accent/50 transition-colors"
                   placeholder="Tu nombre"
                 />
               </div>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-muted-foreground mb-2">
-                  Email
+                  Email <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
                   id="email"
+                  name="email"
+                  required
                   className="w-full px-4 py-2 rounded-lg border bg-card hover:bg-accent/50 focus:bg-accent/50 transition-colors"
                   placeholder="tu@email.com"
                 />
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-muted-foreground mb-2">
-                  Mensaje
+                  Mensaje <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
+                  required
                   className="w-full px-4 py-2 rounded-lg border bg-card hover:bg-accent/50 focus:bg-accent/50 transition-colors"
                   placeholder="Tu mensaje"
                 ></textarea>

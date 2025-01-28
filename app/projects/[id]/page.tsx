@@ -25,7 +25,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           className="inline-flex items-center space-x-2 text-primary-foreground hover:text-primary-foreground/80 transition-colors mb-8"
         >
           <ArrowLeft size={20} />
-          <span>Back to Projects</span>
+          <span>Volver a proyectos</span>
         </Link>
 
         <div className="bg-card rounded-xl overflow-hidden border">
@@ -47,7 +47,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h2 className="text-xl font-semibold mb-4">Tools & Technologies</h2>
+                <h2 className="text-xl font-semibold mb-4">Herramientas & Tecnologías</h2>
                 <div className="flex flex-wrap gap-2">
                   {project.tools.map((tool, index) => (
                     <span
@@ -59,7 +59,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   ))}
                 </div>
 
-                <h2 className="text-xl font-semibold mb-4 mt-8">Project Links</h2>
+                <h2 className="text-xl font-semibold mb-4 mt-8">Links del proyecto</h2>
                 <div className="space-y-2">
                   {project.links?.map((link, index) => (
                     <a
@@ -77,7 +77,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold mb-4">Key Outcomes</h2>
+                <h2 className="text-xl font-semibold mb-4">Resultados clave</h2>
                 <ul className="space-y-2">
                   {project.outcomes.map((outcome, index) => (
                     <li key={index} className="flex items-start">

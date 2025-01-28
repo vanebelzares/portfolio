@@ -95,7 +95,7 @@ function NavLink({
   return (
     <Link
       href={href}
-      className="flex items-center space-x-2 text-muted-foreground hover:text-primary-foreground transition-colors"
+      className="flex items-center space-x-2 text-gray-700 hover:text-black transition-colors"
       download={download}
     >
       {icon}
@@ -120,7 +120,7 @@ function MobileNavLink({
   return (
     <Link
       href={href}
-      className="flex items-center space-x-2 px-2 py-1 text-muted-foreground hover:text-primary-foreground transition-colors"
+      className="flex items-center space-x-2 px-2 py-1 text-gray-700 hover:text-black transition-colors"
       download={download}
       onClick={onClick}
     >
