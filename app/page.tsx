@@ -64,8 +64,7 @@ export default function Home() {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground mb-8">
-                Hola, soy Vanessa Belzares. Transformo datos complejos en información útil,
-                ayudando a las empresas a tomar decisiones basadas en datos.
+                Hola, soy analista de datos apasionada por convertir información en decisiones estratégicas. Con experiencia en herramientas como SQL, Python y Power BI, me enfoco en generar soluciones prácticas que optimicen procesos y aporten valor real a las organizaciones. Siempre en busca de nuevos desafíos y formas de mejorar a través de los datos.
               </p>
               <Link
                 href="#projects"

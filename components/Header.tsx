@@ -25,18 +25,21 @@ export default function Header() {
                 priority
               />
             </div>
-            
+
           </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <NavLink href="/#contact" icon={<Mail size={18} />} text="Contacto" />
-            <NavLink 
-              href="/Vanessa_Belzares_CV.pdf" 
-              icon={<FileText size={18} />} 
-              text="CV" 
-              download
-            />
+            <a
+              href="/Vanessa_Belzares_CV.pdf"
+              target="_blank"
+              className="flex items-center space-x-2"
+            >
+              <FileText size={18} />
+              <span>CV</span>
+            </a>
+
             <NavLink href="/#projects" icon={<FolderKanban size={18} />} text="Portafolio" />
           </div>
 
@@ -54,23 +57,23 @@ export default function Header() {
         {isOpen && (
           <div className="md:hidden pt-4 pb-2">
             <div className="flex flex-col space-y-4">
-              <MobileNavLink 
-                href="/#contact" 
-                icon={<Mail size={18} />} 
-                text="Contacto" 
+              <MobileNavLink
+                href="/#contact"
+                icon={<Mail size={18} />}
+                text="Contacto"
                 onClick={closeMenu}
               />
-              <MobileNavLink 
-                href="/Vanessa_Belzares_CV.pdf" 
-                icon={<FileText size={18} />} 
-                text="CV" 
+              <MobileNavLink
+                href="/Vanessa_Belzares_CV.pdf"
+                icon={<FileText size={18} />}
+                text="CV"
                 download
                 onClick={closeMenu}
               />
-              <MobileNavLink 
-                href="/#projects" 
-                icon={<FolderKanban size={18} />} 
-                text="Portafolio" 
+              <MobileNavLink
+                href="/#projects"
+                icon={<FolderKanban size={18} />}
+                text="Portafolio"
                 onClick={closeMenu}
               />
             </div>
@@ -81,14 +84,14 @@ export default function Header() {
   );
 }
 
-function NavLink({ 
-  href, 
-  icon, 
-  text, 
-  download 
-}: { 
-  href: string; 
-  icon: React.ReactNode; 
+function NavLink({
+  href,
+  icon,
+  text,
+  download
+}: {
+  href: string;
+  icon: React.ReactNode;
   text: string;
   download?: boolean;
 }) {
@@ -104,15 +107,15 @@ function NavLink({
   );
 }
 
-function MobileNavLink({ 
-  href, 
-  icon, 
+function MobileNavLink({
+  href,
+  icon,
   text,
   download,
   onClick
-}: { 
-  href: string; 
-  icon: React.ReactNode; 
+}: {
+  href: string;
+  icon: React.ReactNode;
   text: string;
   download?: boolean;
   onClick?: () => void;
