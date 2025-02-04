@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BarChart2, Database, LineChart, Mail, MapPin, Phone } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 import toast from 'react-hot-toast';
 import { projects } from './data/projects';
@@ -10,9 +10,19 @@ import { projects } from './data/projects';
 export default function Home() {
   const [status, setStatus] = useState('');
 
+  const [isVisible, setIsVisible] = useState(false);
+  const letters = "Vanessa Belzares".split("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Get form fields
     const form = e.currentTarget;
     const name = form.from_name.value.trim();
@@ -26,7 +36,7 @@ export default function Home() {
     }
 
     setStatus('sending');
-    
+
     try {
       await emailjs.sendForm(
         process.env.NEXT_PUBLIC_SERVICE_ID!,
@@ -34,7 +44,7 @@ export default function Home() {
         form,
         process.env.NEXT_PUBLIC_PUBLIC_KEY!
       );
-      
+
       setStatus('success');
       form.reset();
       toast.success('¡Mensaje enviado con éxito!');
@@ -48,39 +58,82 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 px-4 bg-gradient-to-b from-primary/20 to-background">
-        <div className="container mx-auto max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+      <section
+        className="pt-52 pb-16 px-4  w-full flex items-center justify-center min-h-screen bg-gradient-to-b from-background to-primary/60"
+      
+      >
+         <div className="text-center">
+          {/* Animated Studio Text */}
+          <h1 className="relative inline-block">
+            <div className="flex justify-center overflow-hidden">
+              {letters.map((letter, index) => (
+               <span
+               key={index}
+               className={`text-[6vw] text-[#28003C]
+                00 leading-none font-bold tracking-tight inline-block transform transition-all duration-[1000ms] ease-in-out hover:text-purple-300 hover:animate-float
+                 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[100vh] opacity-0'}`}
+               style={{ 
+                 transitionDelay: `${index * 80}ms`,
+                 transitionTimingFunction: 'ease-in-out'
+               }}
+             >
+                {letter === ' ' ? '\u00A0' : letter}
+             </span>
+              ))}
+            </div>
+          </h1>
+
+          {/* Content Below */}
+          <div 
+            className={`mt-8 transform transition-all duration-1000
+              ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+            style={{ 
+              transitionDelay: '1200ms'
+            }}
+          >
+            <h2 className="text-6xl font-bold text-purple-900 mb-4">
+              Data Analyst & Data Scientist
+            </h2>
+            <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
+              Transformando datos en decisiones estratégicas.
+            </p>
+           
+
+            <Link
+                href="#projects"
+                className=" group inline-flex items-center gap-2 space-x-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
+              >
+                Ver mi trabajo
+                <span className="group-hover:translate-x-1 transition-transform">→</span>
+              </Link>
+          </div>
+        </div>
+
+       
+      </section>
+
+      {/* Sobre mí Section */}
+      <section id="about" className="pt-16 flex items-center justify-center pb-16 px-4 bg-gradient-to-b from-background to-primary/20 min-h-screen">
+        <div className="container mx-auto max-w-6xl h-full">
+          <div className="grid md:grid-cols-2 gap-6 items-center justify-center">
             <div>
-            <span className="text-5xl md:text-6xl block text-primary-foreground font-bold mb-8">Vanessa Belzares</span>
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 relative">
-                <span className="absolute text-primary-foreground" style={{
-                  WebkitTextStroke: '2px var(--primary-foreground)'
-                }}>
-                  Data Analyst & Data Scientist
-                </span>
-                <span className="relative text-primary/80">
-                  Data Analyst & Data Scientist
-                </span>
-              </h1>
-              <p className="text-lg text-muted-foreground mb-8">
-                Hola, soy analista de datos apasionada por convertir información en decisiones estratégicas. Con experiencia en herramientas como SQL, Python y Power BI, me enfoco en generar soluciones prácticas que optimicen procesos y aporten valor real a las organizaciones. Siempre en busca de nuevos desafíos y formas de mejorar a través de los datos.
+              <h2 className="text-4xl font-bold text-primary-foreground mb-6">Sobre mí</h2>
+              <p className="text-lg text-muted-foreground mb-6">
+              Soy ingeniero químico de profesión y actualmente me estoy formando como analista de datos. Me apasiona transformar datos en soluciones prácticas, tengo experiencia en análisis y entrenamiento de modelos predictivos. Siempre busco aprender y aplicar nuevas tecnologías para mejorar la eficiencia organizacional. Además, valoro la comunicación y el trabajo en equipo para desarrollar soluciones alineadas con los objetivos de las empresas.
               </p>
               <Link
-                href="#projects"
+                href="#contact"
                 className="inline-flex items-center space-x-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg hover:bg-primary/90 transition-colors"
               >
-                <span>Ver mi trabajo</span>
-                <ArrowRight size={18} />
+                Contáctame
               </Link>
             </div>
-            <div className="relative aspect-square rounded-full overflow-hidden ">
-              <Image
+            {/* Puedes agregar una imagen o cualquier otro detalle aquí */}
+            <div className="flex justify-center items-center w-full h-full">
+              <img
                 src="/photo.jpg"
-                alt="Vanessa Belzares"
-               fill
-                className="object-cover   rounded-full border-8 border-primary/20"
-                priority
+                alt="Foto de Vanessa Belzares"
+                className="w-96 h-96 rounded-full object-cover shadow-lg"
               />
             </div>
           </div>
@@ -88,7 +141,7 @@ export default function Home() {
       </section>
 
       {/* Featured Projects */}
-      <section id="projects" className="py-16 px-4 scroll-mt-20">
+      <section id="projects" className="py-8 px-4 scroll-mt-20 min-h-screen flex items-center justify-center">
         <div className="container mx-auto max-w-8xl">
           <h2 className="text-3xl font-bold text-center mb-12">Proyectos destacados</h2>
           <div className="grid md:grid-cols-4 gap-8">
@@ -124,9 +177,9 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 px-4 bg-gradient-to-t from-primary/20 to-background scroll-mt-20">
+      <section id="contact" className="py-8 px-4 bg-gradient-to-t from-primary/20 to-background scroll-mt-20 min-h-screen flex items-start justify-center">
         <div className="container mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center mb-12">Contactame</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Contáctame</h2>
           <div className="grid md:grid-cols-2 gap-12 items-start">
             <div className="space-y-8">
               <div>
@@ -137,15 +190,15 @@ export default function Home() {
                     className="flex items-center space-x-3 text-muted-foreground hover:text-primary-foreground transition-colors"
                   >
                     <Mail className="w-5 h-5" />
-                        <span>belzaresv@gmail.com</span>
-                  </a>              
+                    <span>belzaresv@gmail.com</span>
+                  </a>
                   <div className="flex items-center space-x-3 text-muted-foreground">
                     <MapPin className="w-5 h-5" />
                     <span>Santiago de Chile, Chile</span>
                   </div>
                 </div>
               </div>
-              
+
               <div>
                 <h3 className="text-xl font-semibold mb-4">Conectemos</h3>
                 <p className="text-muted-foreground">

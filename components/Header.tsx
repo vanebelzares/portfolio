@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, FileText, Mail, FolderKanban } from 'lucide-react';
+import { Menu, X, FileText, Mail, FolderKanban, User } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Header() {
@@ -11,7 +11,7 @@ export default function Header() {
   const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b">
+    <header className="fixed w-full bg-white/80 backdrop-blur-sm z-50 border-b">
       <nav className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center space-x-4" onClick={closeMenu}>
@@ -30,6 +30,7 @@ export default function Header() {
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
+          <NavLink href="/#about" icon={<User size={18} />} text="Sobre mí" /> {/* Nuevo enlace "Sobre mí" */}
             <NavLink href="/#contact" icon={<Mail size={18} />} text="Contacto" />
             <a
               href="/Vanessa_Belzares_CV.pdf"
@@ -57,6 +58,12 @@ export default function Header() {
         {isOpen && (
           <div className="md:hidden pt-4 pb-2">
             <div className="flex flex-col space-y-4">
+            <MobileNavLink
+                href="/#about"
+                icon={<User size={18} />}
+                text="Sobre mí"
+                onClick={closeMenu}
+              /> {/* Nuevo enlace "Sobre mí" */}
               <MobileNavLink
                 href="/#contact"
                 icon={<Mail size={18} />}
