@@ -69,7 +69,7 @@ export default function Home() {
               {letters.map((letter, index) => (
                <span
                key={index}
-               className={`text-[6vw] text-[#28003C]
+               className={`text-[10vw] md:text-[6vw] text-[#28003C]
                 00 leading-none font-bold tracking-tight inline-block transform transition-all duration-[1000ms] ease-in-out hover:text-purple-300 hover:animate-float
                  ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-[100vh] opacity-0'}`}
                style={{ 
@@ -91,7 +91,7 @@ export default function Home() {
               transitionDelay: '1200ms'
             }}
           >
-            <h2 className="text-6xl font-bold text-purple-900 mb-4">
+            <h2 className="text-2xl md:text-6xl font-bold text-purple-900 mb-4 ">
               Data Analyst & Data Scientist
             </h2>
             <p className="text-2xl text-gray-600 mb-8 max-w-2xl mx-auto">
