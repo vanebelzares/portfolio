@@ -33,7 +33,7 @@ export default function Header() {
           <NavLink href="/#about" icon={<User size={18} />} text="Sobre mí" /> {/* Nuevo enlace "Sobre mí" */}
             <NavLink href="/#contact" icon={<Mail size={18} />} text="Contacto" />
             <a
-              href="/Vanessa_Belzares_CV.pdf"
+              href="/Vanessa_CV.pdf"
               target="_blank"
               className="flex items-center space-x-2"
             >
@@ -71,7 +71,7 @@ export default function Header() {
                 onClick={closeMenu}
               />
               <MobileNavLink
-                href="/Vanessa_Belzares_CV.pdf"
+                href="/Vanessa_CV.pdf"
                 icon={<FileText size={18} />}
                 text="CV"
                 download
